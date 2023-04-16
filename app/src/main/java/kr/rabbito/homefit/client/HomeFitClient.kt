@@ -8,7 +8,7 @@ import java.io.OutputStream
 import java.net.Socket
 
 class HomeFitClient {
-    private var serverIP = "192.168.35.69"
+    private var serverIP = "172.30.1.77"
     private var serverPort = 10001
 
     lateinit var socket: Socket
@@ -42,6 +42,11 @@ class HomeFitClient {
         outputStream.write(imageByteArray)
 
 //        Log.d("image", imageByteArray.contentToString())
+    }
+
+    fun sendCameraInfo(info : String){
+        val message = makeMessage(3, info)
+        outputStream.write(message)
     }
 
     // 메시지 수신
