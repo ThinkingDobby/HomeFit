@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.Context
 import android.content.pm.PackageManager
-import android.opengl.Visibility
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.os.Bundle
@@ -20,7 +19,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import kr.rabbito.homefit.client.HomeFitClient
 import kr.rabbito.homefit.databinding.ActivityDcameraBinding
-import kr.rabbito.homefit.screens.navigatorBar.DReportFragment
 import kr.rabbito.homefit.utils.calc.Converter
 import kr.rabbito.homefit.utils.calc.PermissionChecker
 import java.util.concurrent.ExecutorService
@@ -149,15 +147,6 @@ class DCameraActivity : AppCompatActivity() {
                 }.start()
                 break
             }
-//            else if (facing == CameraCharacteristics.LENS_FACING_FRONT) {
-//                // 전면 카메라
-//                val focalLength = characteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS) // 렌즈 초점 거리
-//                val physicalSize = characteristics.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE)!! // 카메라 센서의 물리적인 크기
-//                val pixelArraySize = characteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)!! // 센서에서 사용되는 픽셀 배열의 크기
-//                val horizontalAngle = 2 * atan(physicalSize.width / (2 * focalLength!![0]))
-//                val verticalAngle = 2 * atan(physicalSize.height / (2 * focalLength[0])) * pixelArraySize.width / pixelArraySize.height
-//                Log.e("camera", "전면 카메라\nid : ${cameraId}\n렌즈 초점 거리 : ${focalLength[0]}\n센서 크기 : $physicalSize\n 카메라 픽셀 사이즈 : $pixelArraySize\n 수직 화각 : $verticalAngle\n 수평 화각 : $horizontalAngle")
-//            }
         }
 
         imageCapture?.takePicture(
