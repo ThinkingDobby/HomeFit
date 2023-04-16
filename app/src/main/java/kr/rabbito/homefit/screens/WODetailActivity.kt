@@ -21,11 +21,18 @@ class WODetailActivity : AppCompatActivity() {
         mBinding = ActivityWodetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 임시
+
         val index = intent.getIntExtra("index", 0)
 
         binding.wodetailTvTitle.text = WorkoutData.workoutNamesKOR[index]
         binding.wodetailTvSubTitle.text = WorkoutData.workoutNamesENG[index]
+        binding.wodetailIvWo.setImageResource(WorkoutData.workoutImages[index])
+        binding.wodetailTvDetail.text = WorkoutData.workoutExplain[index]
+
+        if (index == 3) {
+            binding.wodetailTvTitle.textSize = 22F
+            binding.wodetailTvSubTitle.textSize = 10F
+        }
         // WorkoutState.setTotal = 3
 
         binding.wodetailBtnStartWo.setOnClickListener {
@@ -101,6 +108,10 @@ class WODetailActivity : AppCompatActivity() {
             }catch (e : java.lang.NumberFormatException){
                 Log.d("ed test","ed can't formatting")
             }
+        }
+
+        binding.wodetailBtnBack.setOnClickListener {
+            finish()
         }
     }
 }

@@ -4,10 +4,12 @@ import android.Manifest
 import android.content.Intent
 import android.content.Context
 import android.content.pm.PackageManager
+import android.opengl.Visibility
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -167,9 +169,17 @@ class DCameraActivity : AppCompatActivity() {
                     val bitmap = Converter.imageProxyToBitmap(image)
 
                     Thread {
+                        runOnUiThread {
+                            binding.dcameraClLoading.visibility = View.VISIBLE
+                        }
+
                         client!!.sendImage(bitmap)
                         val data = client!!.getData()!!
                         Log.d("connection", "${data[0]}: ${data[1]}")
+
+                        runOnUiThread {
+                            binding.dcameraClLoading.visibility = View.INVISIBLE
+                        }
 
                         val intent = Intent(this@DCameraActivity, MainActivity::class.java)
                         intent.putExtra("VIEW_PAGER_INDEX",1)
