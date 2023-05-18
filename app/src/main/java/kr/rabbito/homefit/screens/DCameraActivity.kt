@@ -84,10 +84,11 @@ class DCameraActivity : AppCompatActivity() {
                     val pixelArraySize = characteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)!! // 센서에서 사용되는 픽셀 배열의 크기
                     val horizontalAngle = 2 * atan(physicalSize.width / (2 * focalLength!![0]))
                     val verticalAngle = 2 * atan(physicalSize.height / (2 * focalLength[0])) * pixelArraySize.width / pixelArraySize.height
-                    Log.e("camera", "후면 카메라\nid : ${cameraId}\n렌즈 초점 거리 : ${focalLength[0]}\n센서 크기 : $physicalSize\n 카메라 픽셀 사이즈 : $pixelArraySize\n 수직 화각 : $verticalAngle\n 수평 화각 : $horizontalAngle")
+                    val spoon_size = binding.dcameraIvSpoonFrame.width
+                    Log.e("camera", "후면 카메라\nid : ${cameraId}\n렌즈 초점 거리 : ${focalLength[0]}\n센서 크기 : $physicalSize\n 카메라 픽셀 사이즈 : $pixelArraySize\n 수직 화각 : $verticalAngle\n 수평 화각 : $horizontalAngle\n 숟가락 사이즈 : $spoon_size")
                     Thread {
                         try {
-                            val cameraInfo = "${focalLength[0]} ${physicalSize.width} $verticalAngle $horizontalAngle"
+                            val cameraInfo = "${focalLength[0]} ${physicalSize.width} ${pixelArraySize.width} ${pixelArraySize.height} $verticalAngle $horizontalAngle $spoon_size"
                             client!!.sendCameraInfo(cameraInfo)
                             val image = BitmapFactory.decodeResource(this.resources, R.drawable.salad)
                             client!!.sendImage(image)
