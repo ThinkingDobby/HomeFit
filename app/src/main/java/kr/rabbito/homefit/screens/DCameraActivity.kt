@@ -1,8 +1,8 @@
 package kr.rabbito.homefit.screens
 
 import android.Manifest
-import android.content.Intent
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.hardware.camera2.CameraCharacteristics
@@ -96,7 +96,7 @@ class DCameraActivity : AppCompatActivity() {
                         try {
                             val cameraInfo = "${focalLength[0]} ${physicalSize.width} ${pixelArraySize.width} ${pixelArraySize.height} $verticalAngle $horizontalAngle $spoon_size"
                             client!!.sendCameraInfo(cameraInfo)
-                            val image = BitmapFactory.decodeResource(this.resources, R.drawable.salad)
+                            val image = BitmapFactory.decodeResource(this.resources, R.drawable.salad_170g)
                             client!!.sendImage(image)
                             Log.e("connection", "send cameraInfo")
                         } catch (e: NullPointerException) {
